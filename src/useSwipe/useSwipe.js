@@ -7,7 +7,7 @@ const useSwipe = (element, preventDefault, callback = () => {}) => {
     endY: 0,
     endX: 0,
     startTime: new Date(),
-    direction: 'RIGHT',
+    swipeDirection: 'RIGHT',
   });
 
   // handle the start of the swipe
@@ -40,7 +40,7 @@ const useSwipe = (element, preventDefault, callback = () => {}) => {
         ...swipe,
         endX: touch.pageX,
         endY: touch.pageY,
-        elapsedTime: new Date().getTime() - swipe.startTime,
+        elapsedTime: (new Date().getTime() - swipe.startTime) / 1000,
         swipeDirection: direction,
         swipeAmount:
           (direction === 'LEFT' && touch.pageX - swipe.startX) ||
