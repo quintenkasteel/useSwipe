@@ -1,4 +1,5 @@
 import React from 'react';
+import ReactDOM from 'react-dom';
 import useSwipe from '../src/index.js';
 
 const App = () => {
@@ -7,4 +8,4 @@ const App = () => {
   return <div>hello</div>
 }
 
-export default App
+ReactDOM.render(<App/>, document.querySelector('#root'));

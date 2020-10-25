@@ -12,24 +12,23 @@ const resolveAppPath = (relativePath) =>
 // Host
 const host = process.env.HOST || 'localhost';
 
-// Required for babel-preset-react-app
-process.env.NODE_ENV = 'development';
-
-module.exports = {
+module.exports = env => {return {
   // Environment mode
   mode: 'development',
 
   // Entry point of app
-  entry: resolveAppPath('demo/index.js'),
+  entry: './demo/App.js',
 
   output: {
-    // Development filename output
-    filename: 'demo/bundle.js',
+    path: __dirname + '/demo',
+    publicPath: '/',
+    filename: 'bundle.js'
   },
 
   devServer: {
     // Serve index.html as the base
-    contentBase: resolveAppPath('demo'),
+    contentBase: './lib',
+    
 
     // Enable compression
     compress: true,
@@ -37,7 +36,7 @@ module.exports = {
     // Enable hot reloading
     hot: true,
 
-    host,
+    host: host,
 
     port: 3000,
 
@@ -50,22 +49,24 @@ module.exports = {
       {
         test: /\.(js|jsx)$/,
         exclude: /node_modules/,
-        include: resolveAppPath('demo'),
-        loader: 'babel-loader',
-        options: {
-          presets: [require.resolve('babel-preset-react-app')],
-        },
+        use: {
+          loader: "babel-loader"
+        }
       },
-    ],
+      {
+        test: /\.html$/,
+        use: [
+          {
+            loader: "html-loader"
+          }
+        ]
+      }
+    ]
   },
-
   plugins: [
-    // Re-generate index.html with injected script tag.
-    // The injected script tag contains a src value of the
-    // filename output defined above.
     new HtmlWebpackPlugin({
-      inject: true,
-      template: resolveAppPath('demo/index.html'),
-    }),
-  ],
-};
+      template: "./demo/index.html",
+      filename: "./index.html"
+    })
+  ]
+}};
