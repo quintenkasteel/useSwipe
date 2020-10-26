@@ -21,7 +21,6 @@ const useSwipe = (element, preventDefault, callback = () => {}) => {
         startY: touch.pageY,
         startTime: new Date().getTime(),
       });
-      return swipe;
     },
     [swipe]
   );
@@ -36,7 +35,7 @@ const useSwipe = (element, preventDefault, callback = () => {}) => {
         (touch.pageY - swipe.startY > 20 && 'DOWN') ||
         (swipe.startY - touch.pageY > 20 && 'UP');
 
-      setSwipe({
+      setSwipe((swipe) => ({
         ...swipe,
         endX: touch.pageX,
         endY: touch.pageY,
@@ -47,7 +46,7 @@ const useSwipe = (element, preventDefault, callback = () => {}) => {
           (direction === 'RIGHT' && touch.pageX - swipe.startX) ||
           (direction === 'UP' && swipe.startY - touch.pageY) ||
           (direction === 'DOWN' && touch.pageY - swipe.startY),
-      });
+      }));
       return swipe;
     },
     [swipe]
