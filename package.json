@@ -1,6 +1,6 @@
 {
   "name": "@quintenkasteel/useswipe",
-  "version": "0.6.3",
+  "version": "0.6.4",
   "main": "./lib/index.js",
   "peerDependencies": {
     "react": "^16.8.6",
