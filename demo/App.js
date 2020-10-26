@@ -1,11 +1,10 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import useSwipe from '../src/index.js';
+import Slider from './Slider/Slider.js';
 
 const App = () => {
-  const swipe = useSwipe()
-  console.log("swipe", swipe)
-  return <div>hello</div>
+  return <Slider><div></div> <div></div><div></div><div></div><div></div></Slider> 
 }
 
 ReactDOM.render(<App/>, document.querySelector('#root'));

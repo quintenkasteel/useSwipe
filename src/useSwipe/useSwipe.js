@@ -6,14 +6,16 @@ const useSwipe = (element, preventDefault, callback = () => {}) => {
     startY: 0,
     endY: 0,
     endX: 0,
+    isSwiping: false, 
     startTime: new Date(),
-    swipeDirection: 'RIGHT',
+    direction: 'RIGHT',
+    distance: 0,
   });
 
   // handle the start of the swipe
   const handleStart = useCallback(
     (event) => {
-      //   preventDefault && event.preventDefault();
+        // preventDefault && event.preventDefault();
       const touch = event.changedTouches[0];
       setSwipe({
         ...swipe,
@@ -29,23 +31,53 @@ const useSwipe = (element, preventDefault, callback = () => {}) => {
     (event) => {
       event.preventDefault();
       const touch = event.changedTouches[0];
+      const direction = 
+        (touch.pageX - swipe.startX > 20 && 'RIGHT') ||
+        (swipe.startX - touch.pageX > 20 && 'LEFT') ||
+        (touch.pageY - swipe.startY > 20 && 'DOWN') ||
+        (swipe.startY - touch.pageY > 20 && 'UP');
+      const distance = (direction === 'LEFT' && touch.pageX - swipe.startX) ||
+      (direction === 'RIGHT' && touch.pageX - swipe.startX) ||
+      (direction === 'UP' && swipe.startY - touch.pageY) ||
+      (direction === 'DOWN' && touch.pageY - swipe.startY)
+        const time = (new Date().getTime() - swipe.startTime) / 1000
+      setSwipe((swipe) => ({
+        ...swipe,
+        endX: touch.pageX,
+        endY: touch.pageY,
+        isSwiping: false, 
+        elapsedTime: time,
+        direction: direction,
+        distance: distance,
+      }));
+      return swipe;
+    },
+    [swipe]
+  );
+
+  const handleMove = useCallback(
+    (event) => {
+      event.preventDefault();
+      const touch = event.changedTouches[0];
       const direction =
         (touch.pageX - swipe.startX > 20 && 'RIGHT') ||
         (swipe.startX - touch.pageX > 20 && 'LEFT') ||
         (touch.pageY - swipe.startY > 20 && 'DOWN') ||
         (swipe.startY - touch.pageY > 20 && 'UP');
-
+      const distance = (direction === 'LEFT' && touch.pageX - swipe.startX) ||
+        (direction === 'RIGHT' && touch.pageX - swipe.startX) ||
+        (direction === 'UP' && swipe.startY - touch.pageY) ||
+        (direction === 'DOWN' && touch.pageY - swipe.startY);
+      const time = (new Date().getTime() - swipe.startTime) / 1000;
       setSwipe((swipe) => ({
         ...swipe,
         endX: touch.pageX,
         endY: touch.pageY,
-        elapsedTime: (new Date().getTime() - swipe.startTime) / 1000,
-        swipeDirection: direction,
-        swipeAmount:
-          (direction === 'LEFT' && touch.pageX - swipe.startX) ||
-          (direction === 'RIGHT' && touch.pageX - swipe.startX) ||
-          (direction === 'UP' && swipe.startY - touch.pageY) ||
-          (direction === 'DOWN' && touch.pageY - swipe.startY),
+        isSwiping: true, 
+        elapsedTime: time,
+        direction: direction,
+        speed: (distance) / time,
+        distance: distance,
       }));
       return swipe;
     },
@@ -54,11 +86,6 @@ const useSwipe = (element, preventDefault, callback = () => {}) => {
 
   // handle the cancellation of the swipe
   const handleCancel = useCallback((event) => {
-    event.preventDefault();
-    return null;
-  }, []);
-  // handle the move during swipe
-  const handleMove = useCallback((event) => {
     event.preventDefault();
     return null;
   }, []);
