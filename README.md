@@ -3,7 +3,7 @@ A simple to use library that provides useSwipe hook for React that enables swipe
 
 ## Usage
 
-  `import useSwipe from '@quintenkasteel/'`
+  `import useSwipe from '@quintenkasteel/useswipe'`
 
  `const swipe = useSwipe()`
 
