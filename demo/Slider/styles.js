@@ -10,7 +10,6 @@ export const StyledSliderContainer = styled.div`
 export const StyledSliderItem = styled.div`
   background: ${props => props.background};
   min-height: 400px;
-  /* flex: 1 0 100%; */
   display: flex;
   min-width: 100%;
 ` 
