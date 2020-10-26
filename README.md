@@ -2,10 +2,13 @@
 A simple to use library that provides useSwipe hook for React that enables swipe gestures for touch screens.
 
 ## Usage
-
   `import useSwipe from '@quintenkasteel/useswipe'`
 
- `const swipe = useSwipe()`
+example without element
+ `const swipe = useSwipe({})`
+
+example with element
+ `const swipe = useSwipe(".header", true)`
 
 
 
