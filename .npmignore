@@ -1,6 +1,7 @@
 config
 node_modules
 public
+demo
 src
 scripts
 .babelrc
