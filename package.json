@@ -2,9 +2,14 @@
   "name": "@quintenkasteel/useswipe",
   "version": "0.6.6",
   "main": "./lib/index.js",
+  "scripts": {
+    "start": "webpack-dev-server --config ./webpack.config.js",
+    "build": "node scripts/build.js",
+    "lib": "babel src --out-dir lib --copy-files",
+    "test": "node scripts/test.js --env=jsdom"
+  },
   "peerDependencies": {
-    "react": "^16.8.6",
-    "react-dom": "^16.8.6"
+    "react": "^16.8.6"
   },
   "devDependencies": {
     "@babel/cli": "^7.12.1",
@@ -24,15 +29,7 @@
     "react-dom": "16.x.x",
     "webpack": "^4.29.6",
     "webpack-cli": "^3.3.0",
-    "webpack-dev-server": "^3.3.0"
-  },
-  "scripts": {
-    "start": "webpack-dev-server --config ./webpack.config.js",
-    "build": "node scripts/build.js",
-    "lib": "babel src --out-dir lib --copy-files",
-    "test": "node scripts/test.js --env=jsdom"
-  },
-  "dependencies": {
+    "webpack-dev-server": "^3.3.0",
     "styled-components": "^5.2.0"
   }
 }
