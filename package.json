@@ -1,6 +1,6 @@
 {
   "name": "@quintenkasteel/useswipe",
-  "version": "0.6.6",
+  "version": "0.6.7",
   "main": "./lib/index.js",
   "scripts": {
     "start": "webpack-dev-server --config ./webpack.config.js",
@@ -31,5 +31,26 @@
     "webpack-cli": "^3.3.0",
     "webpack-dev-server": "^3.3.0",
     "styled-components": "^5.2.0"
-  }
+  }, 
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/quintenkasteel/useswipe.git"
+  },
+  "keywords": [
+    "useSwipe",
+    "swipe",
+    "React",
+    "hooks",
+    "object",
+    "mobile",
+    "responsive",
+    "swipeable"
+  ],
+  "author": "Quinten Kasteel & Fabrizio Marras",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/quintenkasteel/useswipe/issues"
+  },
+  "homepage": "https://github.com/quintenkasteel/useswipe#readme"
 }
+

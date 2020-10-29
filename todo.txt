@@ -1,0 +1,31 @@
+Event Handler Props
+{
+  onSwiped,          // Fired after any swipe
+  onSwipedLeft,      // Fired after LEFT swipe
+  onSwipedRight,     // Fired after RIGHT swipe
+  onSwipedUp,        // Fired after UP swipe
+  onSwipedDown,      // Fired after DOWN swipe
+  onSwiping,         // Fired during any swipe
+}
+Event data
+All Event Handlers are called with the below event data.
+
+{
+  event,          // source event
+  initial,        // initial swipe [x,y]
+  first,          // true for first event
+  deltaX,         // x offset (initial.x - current.x)
+  deltaY,         // y offset (initial.y - current.y)
+  absX,           // absolute deltaX
+  absY,           // absolute deltaY
+  velocity,       // √(absX^2 + absY^2) / time
+  dir,            // direction of swipe (Left|Right|Up|Down)
+}
+Configuration Props
+{
+  delta: 10,                             // min distance(px) before a swipe starts
+  preventDefaultTouchmoveEvent: false,   // preventDefault on touchmove, *See Details*
+  trackTouch: true,                      // track touch input
+  trackMouse: false,                     // track mouse input
+  rotationAngle: 0,                      // set a rotation angle
+}
