@@ -33,6 +33,6 @@
     "test": "node scripts/test.js --env=jsdom"
   },
   "dependencies": {
-    "styled-components": "^5.2.0"
+    "styled-components": "^5.2.1"
   }
 }
